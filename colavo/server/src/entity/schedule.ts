@@ -7,12 +7,11 @@ export class schedule {
     id: number
 
     @Column()
-    firstName: string
+    day: number
 
     @Column()
-    lastName: string
+    begin_at: number
 
     @Column()
-    age: number
-
+    end_at: number
 }

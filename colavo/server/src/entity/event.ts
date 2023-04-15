@@ -7,12 +7,14 @@ export class event {
     id: number
 
     @Column()
-    firstName: string
+    created_at: number
 
     @Column()
-    lastName: string
+    updated_at: number
 
     @Column()
-    age: number
+    begin_at: number
 
+    @Column()
+    end_at: number
 }
