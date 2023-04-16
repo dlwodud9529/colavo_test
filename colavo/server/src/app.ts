@@ -67,7 +67,7 @@ app.post('/getTimeSlots', async (req: Request, res: Response) => {
         endTime = eventInfo.close_interval;
       }
 
-      // is_ignore_schedule값에 따라 start_of_day값이 바뀌므로 변화된 이후에 값을 대입
+      // is_ignore_schedule값에 따라 start_of_day값이 바뀌므로 확인 이후에 값을 대입
       obj.start_of_day = start_of_day;
       obj.day_modifier = day_modifier;
 
