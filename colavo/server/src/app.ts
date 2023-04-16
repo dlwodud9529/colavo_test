@@ -22,10 +22,9 @@ app.get('/', (req, res) => {
 // ---------------------------------TEST---------------------------------- //
 
 app.post('/getTimeSlots', async (req: Request, res: Response) => {
-    // 요청시간 이전 시간때는 예약은 못하게
+    // 요청시간 이전 시간때는 예약은 못하게?(4시에 예약 들어가면 4시 이전은 불가능하도록?)
     // is_ignore_schedule의 값에 따른 결과값(해당 기간에 이미 존재하는 Event을 무시[예약잡힌거 무시])
-    // is_ignore_workhour의 값에 따른 결과값(하루 전체를 기간[9시 30분부터])
-    // 매장은 09시에 open, 예약은 23:00까지만 받는다.
+    // is_ignore_workhour의 값에 따른 결과값(하루 전체를 기간)
     const { start_day_identifier, days, service_duration, timeslot_interval, 
       is_ignore_schedule, is_ignore_workhour, timezone_identifier } = req.body;
     
