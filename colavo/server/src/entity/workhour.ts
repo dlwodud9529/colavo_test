@@ -7,14 +7,14 @@ export class workhour {
     id: number
 
     @Column()
-    is_day_off: Boolean
+    begin_at: number
 
     @Column()
-    open_interval: number
+    end_at: number
 
     @Column()
-    close_interval: number
+    created_at: number
 
     @Column()
-    weekday: number
+    updated_at: number
 }

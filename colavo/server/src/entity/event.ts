@@ -1,20 +1,23 @@
 import { Entity, PrimaryGeneratedColumn, Column } from "typeorm"
 
 @Entity()
-export class event {
+export class eventOp {
 
     @PrimaryGeneratedColumn()
     id: number
 
     @Column()
-    created_at: number
+    open_interval: number
 
     @Column()
-    updated_at: number
+    close_interval: number
 
     @Column()
-    begin_at: number
+    is_day_off: boolean
 
     @Column()
-    end_at: number
+    key: string
+
+    @Column()
+    weekday: number
 }
