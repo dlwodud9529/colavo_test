@@ -70,17 +70,12 @@ app.post('/getTimeSlots', async (req: Request, res: Response) => {
         endTime = eventInfo.close_interval;
       }
 
-
-
       // step 2. Workhour와 겹치지 않는 Timeslot을 반환
       // workhour의 값을 가져온 뒤 해당 요일에 맞는 값을 추려내서
       // hourAry에 저장된 값들 중 해당 workhour의 내용을 지운다
       if(!is_ignore_workhour) {
-        const workhourInfo = await DB.manager.find(workhour);
+        const workhourInfo = await DB.manager.find(workhour);   
         
-        workhourInfo[0].begin_at;
-
-        // 겹치지않게 제거
         while(startTime < endTime) {
           hourAry.push({
             begin_at : start_of_day + startTime,
@@ -89,6 +84,10 @@ app.post('/getTimeSlots', async (req: Request, res: Response) => {
           startTime += timeslot_interval;
         }
 
+        // 겹치는 이벤트 제거
+        for(let i = 0 ; i < workhourInfo.length; i++) {
+          hourAry.filter(e => e.begin_at != workhourInfo[i].begin_at)
+        }    
       } else {
         // 이벤트(step3) 적용된 뒤 배열 생성
         while(startTime < endTime) {
