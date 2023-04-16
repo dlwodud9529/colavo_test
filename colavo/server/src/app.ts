@@ -49,11 +49,9 @@ app.post('/getTimeSlots', async (req: Request, res: Response) => {
       // 예약 가능 시간 저장용 배열
       let hourAry = [];
 
+      // 이벤트마다 오픈&마감시간이 다르므로 초기화를 반복문 안에서 선언
       let startTime = 0; // 0시
       let endTime = 86400; // 24시
-
-      obj.start_of_day = start_of_day;
-      obj.day_modifier = day_modifier;
 
       // 쉬는날은 DB를 참조하여 적용(매주 수요일은 쉽니다 등)
       obj.is_day_off = false;
@@ -68,6 +66,10 @@ app.post('/getTimeSlots', async (req: Request, res: Response) => {
         startTime = eventInfo.open_interval;
         endTime = eventInfo.close_interval;
       }
+
+      // is_ignore_schedule값에 따라 start_of_day값이 바뀌므로 변화된 이후에 값을 대입
+      obj.start_of_day = start_of_day;
+      obj.day_modifier = day_modifier;
 
       // step 2. Workhour와 겹치지 않는 Timeslot을 반환
       // workhour의 값을 가져온 뒤 해당 요일에 맞는 값을 추려내서
