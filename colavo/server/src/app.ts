@@ -28,7 +28,7 @@ app.post('/getTimeSlots', async (req: Request, res: Response) => {
     const { start_day_identifier, days, service_duration, timeslot_interval, 
       is_ignore_schedule, is_ignore_workhour, timezone_identifier } = req.body;
     
-    // 최종 결과값 전달을 위한 배열
+    // 최종 결과값 전달을 위한 배열 정의
     const DayTimetable = [];
 
     // Unixstamp seconds값 구하기
