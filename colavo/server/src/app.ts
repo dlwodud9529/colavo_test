@@ -86,9 +86,12 @@ app.post('/getTimeSlots', async (req: Request, res: Response) => {
         }
 
         // 겹치는 이벤트 제거
-        for(let i = 0 ; i < workhourInfo.length; i++) {
-          hourAry.filter(e => e.begin_at != workhourInfo[i].begin_at)
-        }    
+        if(workhourInfo.length != 0) {
+          for(let i = 0 ; i < workhourInfo.length; i++) {
+            hourAry = hourAry.filter(e => e.begin_at != workhourInfo[i].begin_at)
+          }    
+        }
+
       } else {
         // 이벤트(step3) 적용된 뒤 배열 생성
         while(startTime < endTime) {
